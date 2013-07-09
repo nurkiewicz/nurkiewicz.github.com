@@ -563,19 +563,20 @@ implicit override val generatorDrivenConfig =
 
 test("any date +1 year and -1 year should yield same date back") {
     check { 
-        random: Date =>
+        random: Date => {
             val plusMinusYear = new GregorianCalendar
             plusMinusYear.setTime(random)
             plusMinusYear.add(YEAR, 1)
             plusMinusYear.add(YEAR, -1)
             random == plusMinusYear.getTime
+        }
     }
 }
                     </code></pre>
                     <h4>Negatywny rezultat</h4>
                     <pre><code>
-Falsified after 932 passed tests:
-    arg0 = Fri Feb 29 06:24:50 CET 24004341
+Falsified after 2665 passed tests:
+    arg0 = Mon Feb 29 03:21:22 CET 73843340
                     </code></pre>
                 </section>
 
@@ -681,7 +682,7 @@ producer.send(message);
             // Full list of configuration options available here:
             // https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
-                controls: false,
+                controls: true,
                 progress: true,
                 history: true,
                 center: true,
