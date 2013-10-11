@@ -717,8 +717,8 @@ newTrigger()
             if(Reveal.getQueryHash().mouse) {
 				window.addEventListener("mousedown", function(e) {
 					e.preventDefault();
-					if(e.button === 0) Reveal.right(); 
-					if(e.button === 2) Reveal.left(); 
+					if(e.button === 0) Reveal.next(); 
+					if(e.button === 2) Reveal.prev(); 
 				}, false);
 				window.addEventListener("contextmenu", function(e) { 
 					e.preventDefault(); 
