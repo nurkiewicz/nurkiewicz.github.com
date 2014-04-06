@@ -92,6 +92,10 @@ function double(x) {return x * 2;}
 
 var triple = function(x) {return x * 3;}
           </code></pre>
+          <div class="fragment">
+            <h3>Throws:</h3>
+            <pre><code data-trim contenteditable>TypeError: triple is not a function</code></pre>
+          </div>
         </section>
 
         <section>
@@ -105,6 +109,13 @@ class Vals {
   val triple = (x: Int) => x * 3
 }
           </code></pre>
+
+          <div class="fragment">
+            <h3>Throws:</h3>
+          <pre><code data-trim contenteditable>
+java.lang.NullPointerException
+  at Vals.&lt;init&gt;(Vals.scala:2)
+</code></pre>
         </section>
 
         <section>
@@ -115,6 +126,9 @@ class Vals {
 
   private[this] val answer = 42
 }          </code></pre>
+          <h3 class="fragment">
+            Prints... 0
+          </h3>
         </section>
 
         <section>
@@ -124,6 +138,8 @@ def samples(xs: TraversableOnce[Int]) {
   xs map {x => return x * 10} foreach println
 }
           </code></pre>
+          <p>Never prints anything</p>
+          <hr/>
           <blockquote>The Scala Language Specification<br/>6.20 Return Expressions</blockquote>
         </section>
 
@@ -150,9 +166,11 @@ def samples(xs: TraversableOnce[Int]) {
           <pre><code data-trim contenteditable>
 val p = Seq(1,2,3).permutations
 if (p.size &lt; 10) {
+  //p.size is 6
   p foreach println
 }
           </code></pre>
+          <p>Never prints anything</p>
         </section>
 
         <section>
