@@ -70,7 +70,7 @@
           <h1>Example facts</h1>
           <ul>
             <li>Sold product</li>
-            <li>Tweet/forum post/question on SO</li>
+            <li>Tweet/forum post/shared photo</li>
             <li>Website hit</li>
             <li>Incoming text message</li>
             <li>...you name it</li>
@@ -83,6 +83,7 @@
           <ul>
             <li>When?</li>
             <li>What?</li>
+            <li>Where?</li>
             <li>Who?</li>
             <li>How?</li>
           </ul>
@@ -157,8 +158,8 @@
           <h1>Ignored concepts</h1>
           <ul>
             <li>Hypercube</li>
-            <li>MDX</li>
             <li>Mondrian</li>
+            <li>MDX</li>
           </ul>
         </section>
 
@@ -171,7 +172,6 @@
           <h1>Star schema</h1>
           <img src="img/star_schema.png"/>
         </section>
-
 
         <section>
           <h1>ETL</h1>
@@ -237,6 +237,7 @@
 
         <section>
           <h1>Performance</h1>
+          <p>Big data, <em>before it was cool</em></p>
           <ul>
             <li>Indexes on foreign keys</li>
             <li>Aggregate tables</li>
@@ -247,7 +248,7 @@
           <h1>Without Aggregate table</h1>
           <pre><code data-trim contenteditable>
 SELECT COUNT(id) 
-FROM all_tweets NATURAL JOIN locations
+FROM tweet NATURAL JOIN locations
 GROUP BY locations.continent
           </code></pre>
         </section>
@@ -255,17 +256,17 @@ GROUP BY locations.continent
         <section>
           <h1>With aggregate table</h1>
           <pre><code data-trim contenteditable>
-INSERT INTO agg (cnt, loc.city, loc.country, loc.continent)
+INSERT INTO agg (cnt, l.city, l.country, l.continent)
 SELECT COUNT(t.id) AS cnt, city, country, continent
-FROM all_tweets t NATURAL JOIN locations loc
-GROUP BY loc.city
+FROM tweet t NATURAL JOIN locations l
+GROUP BY l.city
           </code></pre>
           <div class="fragment">
             <p>Usages:</p>
             <pre><code data-trim contenteditable>
-  SELECT SUM(agg.count)
-  FROM agg
-  GROUP BY locations.continent
+SELECT SUM(agg.count)
+FROM agg
+GROUP BY locations.continent
             </code></pre>
           </div>
         </section>
