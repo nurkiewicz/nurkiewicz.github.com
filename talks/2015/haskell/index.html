@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
 
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -43,8 +43,14 @@
 				<section>
 					<h1>Czego Javowiec nauczy się od Haskella?</h1>
 					<h3>Confitura 2015</h3>
+					<p>Tomasz Nurkiewicz</p>
 					<p>
-						<small><a href="http://nurkiewicz.com">Tomasz Nurkiewicz</a> / <a href="https://twitter.com/tnurkiewicz">@tnurkiewicz</a> / <a href="https://twitter.com/4financeIT">@4financeIT</a></small>
+						<a href="http://nurkiewicz.com">nurkiewicz.com</a> |
+						<a href="mailto:nurkiewicz@gmail.com">nurkiewicz@gmail.com</a>
+					</p>
+					<p>
+						<a href="https://twitter.com/tnurkiewicz">@tnurkiewicz</a> |
+						<a href="https://twitter.com/4financeIT">@4financeIT</a>
 					</p>
 				</section>
 
@@ -95,44 +101,37 @@
 
 				<section>
 					<h1>JavaScript</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 function printDate() {
 	//...
 }
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1><a href="https://www.haskell.org/hoogle/">Hoogle</a></h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 [a] -&gt; (a -&gt; b) -&gt; [b]
 
 [a] -&gt; (a -&gt; Bool) -&gt; Bool
 
 Ord a =&gt; [a] -&gt; [a]
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1>Structural search</h1>
 					<h2>IntelliJ IDEA</h2>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 class $Class$ {
 	static int $method$(String $s$, int $def$)
 }
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1>Clojure</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 (defn str-len [s]
 	(.length s))
 > (str-len "abc")
@@ -140,26 +139,22 @@ class $Class$ {
 > (str-len 42)
 java.lang.IllegalArgumentException: 
 No matching field found: length for class java.lang.Long
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1>Groovy</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 def strLen(def s) {
   s.length()
 }
-						</code>
-					</pre>
+					</code></pre>
 					<small>NB: <a href="http://docs.groovy-lang.org/latest/html/gapi/groovy/transform/CompileStatic.html"<code>@CompileStatic</code></a></small>
 				</section>
 
 				<section>
 					<h1>JavaScript</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 [] + []
 ""
 
@@ -171,45 +166,39 @@ def strLen(def s) {
 
 {} + {}
 NaN
-						</pre>
-					</code>
+					</pre></code>
 				</section>
 
 				<section>
 					<h1>C++</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 int    x = 0;
 float *f = reinterpret_cast&lt;float*&gt;(&amp;x);
 *f = 42;
 //x == 1109917696
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1>Java</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 Integer x = 0;
 Float f = (Float)x;
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1>Java...</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 Integer x = 0;
 Object o = x;
 Float f = (Float) o;
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<img src="img/twitter-types-list.png"/>
+					<br/>
 					<small><a href="https://twitter.com/jessitron/status/529652972679331840">twitter.com/jessitron/status/529652972679331840</a></small>
 				</section>
 
@@ -254,8 +243,7 @@ Float f = (Float) o;
 
 				<section>
 					<h1>Stringly typed</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 String uuid;
 String website;
 String email;
@@ -266,14 +254,12 @@ long registrationDate;
 int min, max;
 boolean registered;
 int priority;
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1>Strongly typed</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 UUID uuid;
 URL website;
 Email email;
@@ -284,29 +270,26 @@ OptionalLong registrationDate;
 Range&lt;Integer&gt; range;
 Status status;
 Priority priority;
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
 					<h1>Żywa dokumentacja</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 final Try&lt;InputStream&gt; hosts = Try.ofFailable(
 		() -> new FileInputStream("/etc/hosts"));
-						</code>
-					</pre>
-					<pre>
-						<code data-trim>
-CompletableFuture&lt;String&gt; callWebService() {...}
-						</code>
-					</pre>
-					<pre>
-						<code data-trim>
-Observable&lt;Email&gt; incomingMails() {...}
-						</code>
-					</pre>
+					</code></pre>
 					<small><a href="https://github.com/jasongoodwin/better-java-monads">github.com/jasongoodwin/better-java-monads</a></small>
+				</section>
+
+				<section>
+					<pre><code data-trim>
+CompletableFuture&lt;String&gt; callWebService() {...}
+					</code></pre>
+					<hr/>
+					<pre><code data-trim>
+Observable&lt;Email&gt; incomingMails() {...}
+					</code></pre>
 				</section>
 
 				<section>
@@ -422,27 +405,21 @@ Observable&lt;Email&gt; incomingMails() {...}
 				</section>
 
 				<section>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 bulkRequest.add(new DeleteRequest().index(shardToPurge.routingEntry().index()).type(docToPurge.type).id(docToPurge.id).version(docToPurge.version).routing(docToPurge.routing));
-						</code>
-					</pre>
+					</code></pre>
 					<small><code>org.elasticsearch.indices.ttl.IndicesTTLService</code></small>
 				</section>
 
 				<section>
 					<h1><code>Option(al)</code>?</h1>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 Optional&lt;String&gt; opt = null;
-						</code>
-					</pre>
-					<pre>
-						<code data-trim>
+					</code></pre>
+					<pre><code data-trim>
 scala> Some(null) == None
 res1: Boolean = false
-						</code>
-					</pre>
+					</code></pre>
 				</section>
 
 				<section>
@@ -453,49 +430,47 @@ res1: Boolean = false
 
 					<section>
 						<h1>Domyślnie not-null</h1>
-						<pre>
-							<code data-trim>
+						<pre>	<code data-trim>
 val s: String = "abc";
 val x = s.length()
 
-							</code>
-						</pre>
+						</code></pre>
 					</section>
 
 					<section>
 						<h1>Nie kompiluje się</h1>
-						<pre>
-							<code data-trim>
+						<pre>	<code data-trim>
 val s: String = null;
 val x = s.length()
 
-							</code>
-						</pre>
+						</code></pre>
 					</section>
 
 					<section>
 						<h1>Sprawdzenie</h1>
-						<pre>
-							<code data-trim>
+						<pre>	<code data-trim>
 val s: String? = "abc";
 val x: Int? = s?.length()
 
 if (s != null) {
     val x2: Int = s.length()
 }
-							</code>
-						</pre>
+						</code></pre>
 					</section>
 				</section>
 
 				<section>
 					<h1>Immutable domain</h1>
 					<img src="img/immutable-client.png"/>
+					<br/>
+					<small>&nbsp;</small>
 				</section>
 
 				<section>
 					<h1>git</h1>
 					<img src="img/immutable-git.png"/>
+					<br/>
+					<small><a href="https://git-scm.com/book/en/v2/Git-Internals-Git-Objects">git-scm.com/book/en/v2/Git-Internals-Git-Objects</a></small>
 				</section>
 
 				<section>
@@ -510,7 +485,7 @@ if (s != null) {
 
 				<section>
 					<img src="img/carmack.jpg"/><br/>
-					<a href="https://www.youtube.com/watch?v=1PhArSujR_A&t=5m41s">youtube.com/watch?v=1PhArSujR_A</a>
+					<small><a href="https://www.youtube.com/watch?v=1PhArSujR_A&t=5m41s">youtube.com/watch?v=1PhArSujR_A</a></small>
 				</section>
 
 				<section>
@@ -520,8 +495,7 @@ if (s != null) {
 				</section>
 
 				<section>
-					<pre>
-						<code data-trim>
+					<pre><code data-trim>
 float Q_rsqrt( float number )
 {
 	long i;
@@ -537,9 +511,14 @@ float Q_rsqrt( float number )
 //	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
 
 	return y;
-}						</code>
-					</pre>
+}					</code></pre>
 					<small><a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">wikipedia.org/wiki/Fast_inverse_square_root</a></small>
+				</section>
+
+				<section>
+					<img src="img/twitter-carmack.png"/>
+					<br/>
+					<small><a href="https://twitter.com/id_aa_carmack/status/331918309916295168">twitter.com/id_aa_carmack/status/331918309916295168</a></small>
 				</section>
 
 				<section>
