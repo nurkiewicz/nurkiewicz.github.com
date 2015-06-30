@@ -41,7 +41,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Czego Javowiec nauczy się od Haskella?</h1>
+					<h1>Czego Javowiec nauczy się<br/>od Haskella?</h1>
 					<h3>Confitura 2015</h3>
 					<p>Tomasz Nurkiewicz</p>
 					<p>
@@ -96,7 +96,7 @@
 				</section>
 
 				<section>
-					<img src="img/type-systems.png"/>
+					<img src="img/type-systems.png" height="800"/>
 				</section>
 
 				<section>
@@ -124,7 +124,7 @@ Ord a =&gt; [a] -&gt; [a]
 					<h2>IntelliJ IDEA</h2>
 					<pre><code data-trim>
 class $Class$ {
-	static int $method$(String $s$, int $def$)
+	public static int $method$(String $string$, int $def$)
 }
 					</code></pre>
 				</section>
@@ -183,7 +183,8 @@ float *f = reinterpret_cast&lt;float*&gt;(&amp;x);
 					<h1>Java</h1>
 					<pre><code data-trim>
 Integer x = 0;
-Float f = (Float)x;
+
+Float f = (Float) x;
 					</code></pre>
 				</section>
 
@@ -276,8 +277,10 @@ Priority priority;
 				<section>
 					<h1>Żywa dokumentacja</h1>
 					<pre><code data-trim>
-final Try&lt;InputStream&gt; hosts = Try.ofFailable(
+Try&lt;InputStream&gt; tryOpen() {
+	return Try.ofFailable(
 		() -> new FileInputStream("/etc/hosts"));
+}
 					</code></pre>
 					<small><a href="https://github.com/jasongoodwin/better-java-monads">github.com/jasongoodwin/better-java-monads</a></small>
 				</section>
@@ -293,62 +296,6 @@ Observable&lt;Email&gt; incomingMails() {...}
 				</section>
 
 				<section>
-					<h1>Immutability</h1>
-				</section>
-
-				<section>
-					<h1>Storage</h1>
-					<ul>
-						<li>Cassandra</li>
-						<li>HDFS</li>
-						<li>Datomic<c/li>
-					</ul>
-				</section>
-
-				<section>
-					<img src="img/design-patterns.jpg"/><br/>
-					<small>Source: <a href="http://www.pearsoned.co.uk/bookshop/detail.asp?item=171742">www.pearsoned.co.uk</a></small>
-				</section>
-
-				<section>
-					<h1>Wzorzec <em>Flyweight</em></h1>
-					<quote>
-						A flyweight [...] minimizes memory use by sharing as much data as possible with other similar objects;<br/>
-						[...] simple repeated representation would use an unacceptable amount of memory.<br/>
-						[...] Flyweight objects must be immutable.
-					</quote>
-					<br/>
-					<small>Source: <a href="https://en.wikipedia.org/wiki/Flyweight_pattern">wikipedia.org/wiki/Flyweight_pattern</a></small>
-				</section>
-
-				<section>
-					<img src="img/implementing-ddd-cover.jpg"/><br/>
-				</section>
-
-				<section>
-					<ul>
-						<li><em>value object</em> - 258 razy</li>
-						<li><em>immutable</em> - 68 razy</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>"<em>Implementing Domain-Driven Design</em>"</h1>
-					<quote>
-[...] model using Value Objects instead of Entities <strong>wherever possible</strong>. <br/>
-[...] Entity’s design should be biased toward serving as a Value container<br/>
-[...] Value types that measure, quantify, or describe things are easier to create, test, use, optimize, and maintain. <br/>
-					</quote>
-					<br/>
-					<small>From chapter 6</small>
-				</section>
-
-				<section>
-					<img src="img/twitter-immutable-bad.png"/><br/>
-					<small><a href="https://twitter.com/kellabyte/status/552509551795535874">twitter.com/kellabyte/status/552509551795535874</a></small>
-				</section>
-
-				<section>
 					<h1><code>null</code></h1>
 					<img src="img/npe-street.jpg"/><br/>
 					<small><a href="https://www.facebook.com/programistaplakaljakcommitowal/photos/a.793864227290628.1073741827.793847593958958/880777228599327">https://www.facebook.com/programistaplakaljakcommitowal</a></small>
@@ -358,6 +305,28 @@ Observable&lt;Email&gt; incomingMails() {...}
 					<img src="img/tony_hoare.jpg"/>
 					<br/>
 					<small><a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare</a></small>
+				</section>
+
+				<section>
+					<h1>Tony Hoare</h1>
+					<quote>
+						 "[<code>null</code>] led to innumerable errors, vulnerabilities, and system crashes,<br/>
+						 which have probably caused a billion dollars of pain and damage [...]"
+					</quote>
+				</section>
+
+				<section>
+					<h1>20 lat Javy</h1>
+					<img src="img/20-years.jpg"/>
+					<br/>
+					<small><a href="https://twitter.com/ags313/status/598494588135985152">twitter.com/ags313/status/598494588135985152</a></small>
+				</section>
+
+				<section>
+					<h1>50 lat nulla</h1>
+					<img src="img/ugly-cake.jpg"/>
+					<br/>
+					<small><a href="http://cake.sharonmattnadia.com/2008/10/cake-in-bag.html">cake.sharonmattnadia.com/2008/10/cake-in-bag.html</a></small>
 				</section>
 
 				<section>
@@ -380,7 +349,7 @@ Observable&lt;Email&gt; incomingMails() {...}
 				</section>
 
 				<section>
-					<img src="img/npe-battery.jpg"/><br/>
+					<img src="img/npe-battery.jpg" height="1000"/><br/>
 					<small><a href="https://twitter.com/shipilev/status/553566131194454016">twitter.com/shipilev/status/553566131194454016</a></small>
 				</section>
 
@@ -400,7 +369,7 @@ Observable&lt;Email&gt; incomingMails() {...}
 				</section>
 
 				<section>
-					<img src="img/npe-tomcat.png"/><br/>
+					<img src="img/npe-tomcat.png" height="1000"/><br/>
 					<small><code>org.apache.catalina.connector.CoyoteAdapter</code></small>
 				</section>
 
@@ -457,6 +426,65 @@ if (s != null) {
 }
 						</code></pre>
 					</section>
+				</section>
+
+								<section>
+					<h1>Immutability</h1>
+				</section>
+
+				<section>
+					<h1>Bazy danych</h1>
+					<ul>
+						<li>Cassandra</li>
+						<li>HDFS</li>
+						<li>Datomic<c/li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>1994</h1>
+					<img src="img/design-patterns.jpg"/><br/>
+					<small>Source: <a href="http://www.pearsoned.co.uk/bookshop/detail.asp?item=171742">www.pearsoned.co.uk</a></small>
+				</section>
+
+				<section>
+					<h1>Wzorzec <em>Flyweight</em></h1>
+					<quote>
+						A flyweight [...] minimizes memory use by sharing as much data as possible with other similar objects;<br/>
+						[...] simple repeated representation would use an unacceptable amount of memory.<br/>
+						[...] Flyweight objects must be immutable.
+					</quote>
+					<br/>
+					<small>Source: <a href="https://en.wikipedia.org/wiki/Flyweight_pattern">wikipedia.org/wiki/Flyweight_pattern</a></small>
+				</section>
+
+				<section>
+					<h1>2013</h1>
+					<img src="img/implementing-ddd-cover.jpg"/><br/>
+					<small>Source: <a href="https://vaughnvernon.co/?page_id=168">vaughnvernon.co/?page_id=168</a></small>
+				</section>
+
+				<section>
+					<ul>
+						<li><em>value object</em> - 258 razy</li>
+						<li><em>immutable</em> - 68 razy</li>
+					</ul>
+				</section>
+
+				<section>
+					<h1>"<em>Implementing DDD</em>"</h1>
+					<quote>
+[...] model using Value Objects instead of Entities <strong>wherever possible</strong>. <br/><br/>
+[...] Entity’s design should be biased toward serving as a Value container<br/><br/>
+[...] Value types that measure, quantify, or describe things are easier to create, test, use, optimize, and maintain. <br/><br/>
+					</quote>
+					<br/>
+					<small>From chapter 6</small>
+				</section>
+
+				<section>
+					<img src="img/twitter-immutable-bad.png"/><br/>
+					<small><a href="https://twitter.com/kellabyte/status/552509551795535874">twitter.com/kellabyte/status/552509551795535874</a></small>
 				</section>
 
 				<section>
@@ -524,14 +552,22 @@ float Q_rsqrt( float number )
 				<section>
 					<h1>Czemu?</h1>
 					<ul>
-						<li>Np. zapis stanu gry</li>
+						<li>Zapis stanu gry</li>
+						<li>Gra sieciowa</li>
 					</ul>
 				</section>
 
 				<section>
 					<h1>Podsumowanie</h1>
 					<ul>
-						<li><a href="https://github.com/Frege/frege">frege</a></li>
+						<li><code>null</code></li>
+						<li>zmienne</li>
+						<li>wyjątki</li>
+						<li><code>void</code></li>
+						<li><code>Object</code></li>
+						<li>pętle</li>
+						<li>przeciążanie metod</li>
+						<li>efekty uboczne</li>
 					</ul>
 				</section>
 
