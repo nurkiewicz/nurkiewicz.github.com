@@ -100,15 +100,6 @@
 				</section>
 
 				<section>
-					<h1>JavaScript</h1>
-					<pre><code data-trim>
-function printDate() {
-	//...
-}
-					</code></pre>
-				</section>
-
-				<section>
 					<h1><a href="https://www.haskell.org/hoogle/">Hoogle</a></h1>
 					<pre><code data-trim>
 [a] -&gt; (a -&gt; b) -&gt; [b]
@@ -127,29 +118,6 @@ class $Class$ {
 	public static int $method$(String $string$, int $def$)
 }
 					</code></pre>
-				</section>
-
-				<section>
-					<h1>Clojure</h1>
-					<pre><code data-trim>
-(defn str-len [s]
-	(.length s))
-> (str-len "abc")
-3
-> (str-len 42)
-java.lang.IllegalArgumentException: 
-No matching field found: length for class java.lang.Long
-					</code></pre>
-				</section>
-
-				<section>
-					<h1>Groovy</h1>
-					<pre><code data-trim>
-def strLen(def s) {
-  s.length()
-}
-					</code></pre>
-					<small>NB: <a href="http://docs.groovy-lang.org/latest/html/gapi/groovy/transform/CompileStatic.html"<code>@CompileStatic</code></a></small>
 				</section>
 
 				<section>
@@ -176,24 +144,6 @@ int    x = 0;
 float *f = reinterpret_cast&lt;float*&gt;(&amp;x);
 *f = 42;
 //x == 1109917696
-					</code></pre>
-				</section>
-
-				<section>
-					<h1>Java</h1>
-					<pre><code data-trim>
-Integer x = 0;
-
-Float f = (Float) x;
-					</code></pre>
-				</section>
-
-				<section>
-					<h1>Java...</h1>
-					<pre><code data-trim>
-Integer x = 0;
-Object o = x;
-Float f = (Float) o;
 					</code></pre>
 				</section>
 
@@ -240,6 +190,11 @@ Float f = (Float) o;
 				<section>
 					<img src="img/twitter-string-type.png"/><br/>
 					<small><a href="https://twitter.com/natpryce/status/557553705109950464">twitter.com/natpryce/status/557553705109950464</a></small>
+				</section>
+
+				<section>
+					<img src="img/twitter-string-future.png"/><br/>
+					<small><a href="https://twitter.com/velartrill/status/615714789499637760">twitter.com/velartrill/status/615714789499637760</a></small>
 				</section>
 
 				<section>
@@ -292,7 +247,6 @@ def sendSms(Phone number, String text) {
 	dao.save(number, text)
 	restClient.post(number, text)
 }
-
 					</code></pre>
 				</section>
 
