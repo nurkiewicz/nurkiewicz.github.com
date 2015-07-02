@@ -64,17 +64,6 @@
 				</section>
 
 				<section>
-					<h1>Ile masz przy sobie JVMów?</h1>
-				</section>
-
-				<section>
-					<h1>javacard.framework.Applet</h1>
-					<img src="img/Differentsmartcardpadlayouts.jpg"/>
-					<br/>
-					<small><a href="https://en.wikipedia.org/wiki/Smart_card">wikipedia.org/wiki/Smart_card</a></small>
-				</section>
-
-				<section>
 					<h1>Czego nie ma Haskell?</h1>
 				</section>
 
@@ -117,33 +106,6 @@ Ord a =&gt; [a] -&gt; [a]
 class $Class$ {
 	public static int $method$(String $string$, int $def$)
 }
-					</code></pre>
-				</section>
-
-				<section>
-					<h1>JavaScript</h1>
-					<pre><code data-trim>
-[] + []
-""
-
-[] + {}
-"[object Object]"
-
-{} + []
-0
-
-{} + {}
-NaN
-					</pre></code>
-				</section>
-
-				<section>
-					<h1>C++</h1>
-					<pre><code data-trim>
-int    x = 0;
-float *f = reinterpret_cast&lt;float*&gt;(&amp;x);
-*f = 42;
-//x == 1109917696
 					</code></pre>
 				</section>
 
@@ -358,7 +320,7 @@ res1: Boolean = false
 					<section>
 						<h1>Domyślnie not-null</h1>
 						<pre>	<code data-trim>
-val s: String = "abc";
+val s: String = "abc"
 val x = s.length()
 
 						</code></pre>
@@ -367,7 +329,7 @@ val x = s.length()
 					<section>
 						<h1>Nie kompiluje się</h1>
 						<pre>	<code data-trim>
-val s: String? = null;
+val s: String? = null
 val x = s.length()
 
 						</code></pre>
@@ -376,7 +338,7 @@ val x = s.length()
 					<section>
 						<h1>Sprawdzenie</h1>
 						<pre>	<code data-trim>
-val s: String? = "abc";
+val s: String? = "abc"
 val x: Int? = s?.length()
 
 if (s != null) {
