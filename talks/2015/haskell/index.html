@@ -287,6 +287,17 @@ Try&lt;InputStream&gt; tryOpen() {
 
 				<section>
 					<pre><code data-trim>
+@Transactional
+def sendSms(Phone number, String text) {
+	dao.save(number, text)
+	restClient.post(number, text)
+}
+
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code data-trim>
 CompletableFuture&lt;String&gt; callWebService() {...}
 					</code></pre>
 					<hr/>
@@ -374,13 +385,6 @@ Observable&lt;Email&gt; incomingMails() {...}
 				</section>
 
 				<section>
-					<pre><code data-trim>
-bulkRequest.add(new DeleteRequest().index(shardToPurge.routingEntry().index()).type(docToPurge.type).id(docToPurge.id).version(docToPurge.version).routing(docToPurge.routing));
-					</code></pre>
-					<small><code>org.elasticsearch.indices.ttl.IndicesTTLService</code></small>
-				</section>
-
-				<section>
 					<h1><code>Option(al)</code>?</h1>
 					<pre><code data-trim>
 Optional&lt;String&gt; opt = null;
@@ -409,7 +413,7 @@ val x = s.length()
 					<section>
 						<h1>Nie kompiluje się</h1>
 						<pre>	<code data-trim>
-val s: String = null;
+val s: String? = null;
 val x = s.length()
 
 						</code></pre>
