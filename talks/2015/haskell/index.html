@@ -194,9 +194,9 @@ Priority priority;
 				<section>
 					<h1>Żywa dokumentacja</h1>
 					<pre><code data-trim>
-Try&lt;InputStream&gt; tryOpen() {
+Try&lt;InputStream&gt; tryOpen(File f) {
 	return Try.ofFailable(
-		() -> new FileInputStream("/etc/hosts"));
+		() -> new FileInputStream(f));
 }
 					</code></pre>
 					<small><a href="https://github.com/jasongoodwin/better-java-monads">github.com/jasongoodwin/better-java-monads</a></small>
@@ -204,21 +204,9 @@ Try&lt;InputStream&gt; tryOpen() {
 
 				<section>
 					<pre><code data-trim>
-@Transactional
-def sendSms(Phone number, String text) {
-	dao.save(number, text)
-	restClient.post(number, text)
+CompletableFuture&lt;String&gt; callWebService() {
+	//...
 }
-					</code></pre>
-				</section>
-
-				<section>
-					<pre><code data-trim>
-CompletableFuture&lt;String&gt; callWebService() {...}
-					</code></pre>
-					<hr/>
-					<pre><code data-trim>
-Observable&lt;Email&gt; incomingMails() {...}
 					</code></pre>
 				</section>
 
@@ -235,7 +223,7 @@ Observable&lt;Email&gt; incomingMails() {...}
 				</section>
 
 				<section>
-					<h1>Tony Hoare</h1>
+					<h1>Tony Hoare (2009)</h1>
 					<quote>
 						 "[<code>null</code>] led to innumerable errors, vulnerabilities, and system crashes,<br/>
 						 which have probably caused a billion dollars of pain and damage [...]"
@@ -257,6 +245,7 @@ Observable&lt;Email&gt; incomingMails() {...}
 				</section>
 
 				<section>
+					<h1>Java 8 in Action</h1>
 					<quote>
 						<ul>
 							<li>[...] <code>NullPointerException</code> is by far the most common exception in Java. </li>
@@ -266,8 +255,6 @@ Observable&lt;Email&gt; incomingMails() {...}
 							<li>[...] It creates a hole in the type system. [...] it can be assigned to any reference type</li>
 						</ul>
 					</quote>
-					<br/>
-					<small>Source: <a href="http://www.manning.com/urma/">Java 8 in Action</a></small>
 				</section>
 
 				<section>
@@ -302,10 +289,10 @@ Observable&lt;Email&gt; incomingMails() {...}
 
 				<section>
 					<h1><code>Option(al)</code>?</h1>
-					<pre><code data-trim>
+					<pre class="fragment"><code data-trim>
 Optional&lt;String&gt; opt = null;
 					</code></pre>
-					<pre><code data-trim>
+					<pre class="fragment"><code data-trim>
 scala> Some(null) == None
 res1: Boolean = false
 					</code></pre>
@@ -390,10 +377,8 @@ if (s != null) {
 				</section>
 
 				<section>
-					<ul>
-						<li><em>value object</em> - 258 razy</li>
-						<li><em>immutable</em> - 68 razy</li>
-					</ul>
+					<h3>value object</em> - 258 razy</h3>
+					<h3>immutable</em> - 68 razy</h3>
 				</section>
 
 				<section>
@@ -405,13 +390,6 @@ if (s != null) {
 					</quote>
 					<br/>
 					<small>From chapter 6</small>
-				</section>
-
-				<section>
-					<h1>Immutable domain</h1>
-					<img src="img/immutable-client.png"/>
-					<br/>
-					<small>&nbsp;</small>
 				</section>
 
 				<section>
