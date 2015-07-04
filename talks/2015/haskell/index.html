@@ -42,16 +42,15 @@
 			<div class="slides">
 				<section>
 					<h1>Czego Javowiec nauczy się<br/>od Haskella?</h1>
-					<h3>Confitura 2015</h3>
-					<p>Tomasz Nurkiewicz</p>
-					<p>
+					<h2>Tomasz Nurkiewicz</h2>
+					<h3>
 						<a href="http://nurkiewicz.com">nurkiewicz.com</a> |
 						<a href="mailto:nurkiewicz@gmail.com">nurkiewicz@gmail.com</a>
-					</p>
-					<p>
+					</h3>
+					<h3>
 						<a href="https://twitter.com/tnurkiewicz">@tnurkiewicz</a> |
 						<a href="https://twitter.com/4financeIT">@4financeIT</a>
-					</p>
+					</h3>
 				</section>
 
 				<section>
@@ -104,7 +103,8 @@ Ord a =&gt; [a] -&gt; [a]
 					<h2>IntelliJ IDEA</h2>
 					<pre><code data-trim>
 class $Class$ {
-	public static int $method$(String $string$, int $def$)
+	public static int $method$(String $string$, 
+	                           int $def$)
 }
 					</code></pre>
 				</section>
@@ -182,9 +182,9 @@ UUID uuid;
 URL website;
 Email email;
 Name name;
-Document client;
+Optional&lt;Document&gt; client;
 Year birthYear;
-OptionalLong registrationDate;
+Instant registration;
 Range&lt;Integer&gt; range;
 Status status;
 Priority priority;
@@ -217,20 +217,6 @@ CompletableFuture&lt;String&gt; callWebService() {
 				</section>
 
 				<section>
-					<img src="img/tony_hoare.jpg"/>
-					<br/>
-					<small><a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare</a></small>
-				</section>
-
-				<section>
-					<h1>Tony Hoare (2009)</h1>
-					<quote>
-						 "[<code>null</code>] led to innumerable errors, vulnerabilities, and system crashes,<br/>
-						 which have probably caused a billion dollars of pain and damage [...]"
-					</quote>
-				</section>
-
-				<section>
 					<h1>20 lat Javy</h1>
 					<img src="img/20-years.jpg"/>
 					<br/>
@@ -242,6 +228,20 @@ CompletableFuture&lt;String&gt; callWebService() {
 					<img src="img/ugly-cake.jpg"/>
 					<br/>
 					<small><a href="http://cake.sharonmattnadia.com/2008/10/cake-in-bag.html">cake.sharonmattnadia.com/2008/10/cake-in-bag.html</a></small>
+				</section>
+
+				<section>
+					<img src="img/tony_hoare.jpg"/>
+					<br/>
+					<small><a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare</a></small>
+				</section>
+
+				<section>
+					<h1>Tony Hoare (2009)</h1>
+					<quote>
+						 "[<code>null</code>] led to innumerable errors, vulnerabilities, and system crashes,<br/>
+						 which have probably caused a billion dollars of pain and damage [...]"
+					</quote>
 				</section>
 
 				<section>
@@ -416,7 +416,7 @@ if (s != null) {
 
 				<section>
 					<h1>Wolfenstein 3D (1992)</h1>
-					<img src="img/wolfenstein.png"/><br/>
+					<img src="img/wolfenstein.png" height="700"/><br/>
 					<small><a href="https://en.wikipedia.org/wiki/Wolfenstein_3D">wikipedia.org/wiki/Wolfenstein_3D</a></small>
 				</section>
 
@@ -424,19 +424,19 @@ if (s != null) {
 					<pre><code data-trim>
 float Q_rsqrt( float number )
 {
-	long i;
-	float x2, y;
-	const float threehalfs = 1.5F;
+  long i;
+  float x2, y;
+  const float threehalfs = 1.5F;
 
-	x2 = number * 0.5F;
-	y  = number;
-	i  = * ( long * ) &amp;y;                       // evil floating point bit level hacking
-	i  = 0x5f3759df - ( i &gt;&gt; 1 );               // what the fuck? 
-	y  = * ( float * ) &amp;i;
-	y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
-//	y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+  x2 = number * 0.5F;
+  y  = number;
+  i  = * ( long * ) &amp;y;         // evil floating point bit level hacking
+  i  = 0x5f3759df - ( i &gt;&gt; 1 ); // what the fuck? 
+  y  = * ( float * ) &amp;i;
+  y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
+//y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
 
-	return y;
+  return y;
 }					</code></pre>
 					<small><a href="https://en.wikipedia.org/wiki/Fast_inverse_square_root">wikipedia.org/wiki/Fast_inverse_square_root</a></small>
 				</section>
