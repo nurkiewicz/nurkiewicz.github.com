@@ -130,13 +130,13 @@ class $Class$ {
 							<a href="http://www.infoq.com/news/2014/08/python-type-annotation-proposal">Guido van Rossum Wants to Bring Type Annotations to Python</a>
 						</li>
 						<li>
-							Facebook: <a href="http://hacklang.org/">Hack</a> (składnia PHP, statyczne typowanie)
+							<a href="https://github.com/clojure/core.typed"><code>core.typed</code></a> - an optional type system for Clojure
 						</li>
 						<li>
 							<a href="http://php.net/manual/en/language.oop5.typehinting.php">PHP 5: Type Hinting</a>, <a href="https://wiki.php.net/rfc/return_types">RFC: Return Type Declarations</a>
 						</li>
 						<li>
-							<a href="https://github.com/clojure/core.typed"><code>core.typed</code></a> - an optional type system for Clojure
+							Facebook: <a href="http://hacklang.org/">Hack</a> (składnia PHP, statyczne typowanie)
 						</li>
 						<li>
 							JavaScript: 
@@ -250,7 +250,7 @@ CompletableFuture&lt;String&gt; callWebService() {
 				</section>
 
 				<section>
-					<h1>Java 8 in Action</h1>
+					<h1>From "Java 8 in Action"</h1>
 					<quote>
 						<ul>
 							<li>[...] <code>NullPointerException</code> is by far the most common exception in Java. </li>
@@ -295,7 +295,7 @@ CompletableFuture&lt;String&gt; callWebService() {
 				<section>
 					<h1><code>Option(al)</code>?</h1>
 					<pre class="fragment"><code data-trim>
-Optional&lt;String&gt; opt = null;
+Optional&lt;String&gt; opt = null;  //YOLO
 					</code></pre>
 					<pre class="fragment"><code data-trim>
 scala> Some(null) == None
@@ -369,7 +369,7 @@ if (s != null) {
 					<quote>
 						A flyweight [...] minimizes memory use by sharing as much data as possible with other similar objects;<br/>
 						[...] simple repeated representation would use an unacceptable amount of memory.<br/>
-						[...] Flyweight objects must be immutable.
+						[...] <strong>Flyweight objects must be immutable.</strong>
 					</quote>
 					<br/>
 					<small>Source: <a href="https://en.wikipedia.org/wiki/Flyweight_pattern">wikipedia.org/wiki/Flyweight_pattern</a></small>
@@ -435,7 +435,8 @@ float Q_rsqrt( float number )
 
   x2 = number * 0.5F;
   y  = number;
-  i  = * ( long * ) &amp;y;         // evil floating point bit level hacking
+  i  = * ( long * ) &amp;y;         // evil floating point 
+                                // bit level hacking
   i  = 0x5f3759df - ( i &gt;&gt; 1 ); // what the fuck? 
   y  = * ( float * ) &amp;i;
   y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
