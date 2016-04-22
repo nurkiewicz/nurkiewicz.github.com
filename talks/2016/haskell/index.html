@@ -205,7 +205,7 @@ Priority           priority;
 				<section>
 					<h1>Żywa dokumentacja</h1>
 					<pre><code data-trim>
-CompletableFuture&lt;String&gt; callWebService() {
+CompletableFuture&lt;BigDecimal&gt; doSomeWork() {
 	//...
 }
 					</code></pre>
@@ -256,7 +256,7 @@ Try&lt;InputStream&gt; tryOpen(File f) {
 				</section>
 
 				<section>
-					<h1>From "Java 8 in Action"</h1>
+					<h1>"Java 8 in Action"</h1>
 					<quote>
 						<ul>
 							<li>[...] <code>NullPointerException</code> is by far the most common exception in Java. </li>
@@ -294,7 +294,7 @@ Try&lt;InputStream&gt; tryOpen(File f) {
 				</section>
 
 				<section>
-					<h1>These unlucky people have names that break computers</h1>
+					<h1>"These unlucky people have names that break computers"</h1>
 					<quote>"[...]<span style="background-color: #FF0">When Jennifer Null tries to buy a plane ticket,<br/>
 					she gets an error message on most websites</span>.<br/>
 					The site will say she has left<br/>
@@ -391,9 +391,9 @@ if (s != null) {
 				<section>
 					<h1>"<em>Implementing DDD</em>"</h1>
 					<quote>
-[...] model using Value Objects instead of Entities <strong>wherever possible</strong>. <br/><br/>
+[...] model using Value Objects instead of Entities <span style="background-color: #FF0">wherever possible</span>. <br/><br/>
 [...] Entity’s design should be biased toward serving as a Value container<br/><br/>
-[...] Value types that measure, quantify, or describe things are easier to create, test, use, optimize, and maintain. <br/><br/>
+[...] Value types that measure, quantify, or describe things are <span style="background-color: #FF0">easier to create, test, use, optimize, and maintain</span>. <br/><br/>
 					</quote>
 					<br/>
 					<small>From chapter 6</small>
@@ -430,8 +430,7 @@ if (s != null) {
 
 				<section>
 					<pre><code data-trim>
-float Q_rsqrt( float number )
-{
+float Q_rsqrt( float number ) {
   long i;
   float x2, y;
   const float threehalfs = 1.5F;
@@ -443,7 +442,8 @@ float Q_rsqrt( float number )
   i  = 0x5f3759df - ( i &gt;&gt; 1 ); // what the fuck? 
   y  = * ( float * ) &amp;i;
   y  = y * ( threehalfs - ( x2 * y * y ) );   // 1st iteration
-//y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration, this can be removed
+//y  = y * ( threehalfs - ( x2 * y * y ) );   // 2nd iteration,
+                                              // this can be removed
 
   return y;
 }					</code></pre>
