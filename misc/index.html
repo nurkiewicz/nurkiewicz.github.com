@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      var locations = [
+        {lat: 52.237049, lng: 21.017532, label: 'Warsaw'},
+        {lat: 37.392529, lng: -5.994072, label: 'Sevilla'},
+        {lat: 54.4418,   lng: 18.56003,  label: 'Sopot'},
+      ];
+
+      function initMap() {
+        var myLatLng = {lat: -25.363, lng: 131.044};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: locations[0]
+        });
+
+        for(var i = 0; i < locations.length; ++i) {
+          var location = locations[i];
+          new google.maps.Marker({
+            position: location,
+            map: map,
+            title: location.label
+          });
+        }
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjz3blal6gWkvRMcH2NVW71-5oBci8YyM&callback=initMap">
+    </script>
+  </body>
+</html>
