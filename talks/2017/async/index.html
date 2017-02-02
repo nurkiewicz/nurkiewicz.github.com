@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Asynchronous by default, synchronous when necessary</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/simple.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Asynchronous by default, synchronous when necessary</h1>
+					<p>
+						<a href="http://nurkiewicz.com">Tomasz Nurkiewicz</a> / <a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a>
+					</p>
+				</section>
+
+				<section>
+					<h1>Agenda</h1>
+					tl;dr: distributed systems &amp; event sourcing 
+				</section>
+
+				<section>
+					<h1>THE monolith</h1>
+					<img src="img/monolith_bright.jpg"/>
+				</section>
+
+				<section>
+					<h1>Splitting the monolith</h1>
+				</section>
+
+				<section>
+					<h1>Cheap and safe</h1>
+					<pre><code class="hljs" data-trim>
+						long triple(long x) {
+						  return x * 3;
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<blockquote>
+						1. All teams will henceforth expose their data and functionality through <strong>service interfaces</strong>.
+						<br/>
+						[...]
+						<br/>
+						4. It doesn’t matter what technology they use. HTTP, Corba, Pubsub, custom protocols — doesn’t matter.
+					</blockquote>
+					<small class="fragment">
+						<a href="http://searchengineland.com/the-google-doesnt-get-platforms-family-intervention-memo-96619">Jeff Bezos, CEO of Amazon, 2002</a>
+					</small>
+				</section>
+
+				<section>
+					<img src="img/ebola_virus.jpg" width="1000"/>
+					<p>Amazon architecture circa 2009 <span style="visibility: hidden">Ebola virus</span></p>
+				</section>
+
+				<section>
+					<img src="img/ebola_virus.jpg" width="1000"/>
+					<p><span style="text-decoration:line-through; color: red"><span style="color: black">Amazon architecture circa 2009</span></span> Ebola virus</p>
+				</section>
+
+				<section>
+					<img src="img/amazon.png" width="1000"/>
+					<p>Amazon internal services architecture circa 2009</p>
+					<small><a href="https://apigee.com/about/blog/developer/microservices-amazon">https://apigee.com/about/blog/developer/microservices-amazon</a></small>
+				</section>
+
+				<section>
+					<h1>Steve Yegge (2005)</h1>
+					<hr/>
+					<blockquote>
+					[Amazon's] code base is a disaster, with no engineering standards whatsoever except what individual teams choose to put in place [...]
+					</blockquote>
+					<a href="https://plus.google.com/+RipRowan/posts/eVeouesvaVX">plus.google.com/+RipRowan/posts/eVeouesvaVX</a>
+				</section>
+
+				<section>
+					<h1>Steve Yegge (cont.)</h1>
+					<hr/>
+					<blockquote>
+					- pager escalation gets way harder[...]
+					</blockquote>
+				</section>
+
+				<section>
+					<h1>Steve Yegge (cont.)</h1>
+					<hr/>
+					<blockquote>
+					- very serious quotas and throttling [...] in every single service
+					</blockquote>
+				</section>
+
+				<section>
+					<h1>Steve Yegge (cont.)</h1>
+					<hr/>
+					<blockquote>
+					- monitoring and QA are the same thing[...]
+					</blockquote>
+				</section>
+
+				<section>
+					<h1>Steve Yegge (cont.)</h1>
+					<hr/>
+					<blockquote>
+					- you won't be able to find any [<em>service</em>] without a service-discovery mechanism
+					</blockquote>
+				</section>
+
+				<section>
+					<h1>Steve Yegge (cont.)</h1>
+					<hr/>
+					<blockquote>
+					- debugging problems with someone else's code gets a LOT harder
+					</blockquote>
+				</section>
+
+				<section>
+					<img src="img/monolith_bright.jpg"/>
+				</section>
+
+				<section>
+					<h1>Turning Java interfaces to RESTful services</h1>
+				</section>
+
+				<section>
+					<pre><code class="hljs" data-trim>
+						@RequestLine("GET /triple/{x}")
+						long triple(@Param("x") long x);
+					</code></pre>
+					<a href="https://github.com/OpenFeign/feign">Feign</a>
+				</section>
+
+				<section>
+					<pre><code class="hljs" data-trim>
+						> GET /triple/13 HTTP/1.1
+						> Host: my-service.us-east-1
+
+						< HTTP/1.1 200 OK
+
+						< 39
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Fallacies of distributed computing</h1>
+					<p>1994</p>
+				</section>
+
+				<section>
+					<h1>1. The network is reliable</h1>
+					<hr/>
+					<img src="img/hystrix.jpg"/>
+				</section>
+
+				<section>
+					<h1>2. Latency is zero</h1>
+					<hr/>
+					<img src="img/zipkin.png"/>
+					<small><a href="https://tech.finn.no/images/2015-04-28-Apache-Cassandra-in-a-Microservices-Enterprise-Platform/zipkin-request-page.png">tech.finn.no</a></small>
+				</section>
+
+				<section>
+					<h1>3. Bandwidth is infinite</h1>
+					<hr/>
+					<p>Batching, compression</p>
+				</section>
+
+				<section>
+					<h1>4. The network is secure</h1>
+					<hr/>
+					<p>SSL, OAuth</p>
+				</section>
+
+				<section>
+					<h1>6. There is one administrator</h1>
+					<hr/>
+					<p>Escalation, root cause</p>
+				</section>
+
+				<section>
+					<h1>7. Transport cost is zero</h1>
+					<hr/>
+					<blockquote>
+						The Internet is running in debug mode
+					</blockquote>
+					<small><a href="http://java-is-the-new-c.blogspot.com/2014/10/why-protocols-are-messy-concept.html">Rüdiger Möller</a></small>
+				</section>
+
+				<section>
+					<h1>Hollywood principle</h1>
+					<h3>...on architecture level</h3>
+				</section>
+
+				<section>
+					<h1>Synchronous architecture</h1>
+					<img src="img/sync_stock.png" width="1200"/>
+				</section>
+
+				<section>
+					<h1>Still synchronous</h1>
+					<pre><code class="hljs" data-trim>
+						Observable
+						  .zip(
+						    prices.of("IBM"),
+						    portfolio.fetch(LocalDate.of(2017, 01, 2017)),
+						    risk.check("IBM", 12, -0.1, 0)
+						        .filter(Result::isSecure),
+						    Order::build
+						  )
+						  .filter(Order::isProfitable)
+						  .flatMap(stock::buy)
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Publish changes</h1>
+				</section>
+
+				<section>
+					<img src="img/async_stock.png" width="1200"/>
+				</section>
+
+				<section>
+					<h1>Temporal coupling</h1>
+				</section>
+
+				<section>
+					<h1>Event DB</h1>
+					<img src="img/events_db.png" width="1400"/>
+				</section>
+
+				<section>
+					<h1>Audit, historic data</h1>
+					<pre><code class="hljs" data-trim>
+						GET /portfolio?at=25-01-2017
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Occasionally connected devices</h1>
+					<img src="img/trello.jpg"/>
+					<p><small>Google Docs, Trello, Pocket, Evernote, Endomondo</small></p>
+				</section>
+
+				<section>
+					<h1>Caveats</h1>
+				</section>
+
+				<section>
+					<h1>Eventual consistency</h1>
+				</section>
+
+				<section>
+					<h1>Rebuilding costs</h1>
+				</section>
+	
+				<section>
+					<h1>Can Internet work this way?</h1>
+				</section>
+
+				<section>
+					<h1>Thank you!</h1>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: false,
+				history: true,
+				center: true,
+				width: 1920,
+				height: 1200,
+				margin: 0.05,
+
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
