@@ -175,6 +175,7 @@
 				<section>
 					<h1>Fallacies of distributed computing</h1>
 					<p>1994</p>
+					<p>#AlternativeFacts</p>
 				</section>
 
 				<section>
@@ -230,10 +231,10 @@
 				<section>
 					<h1>Still synchronous</h1>
 					<pre><code class="hljs" data-trim>
-						Observable
+						Flowable
 						  .zip(
 						    prices.of("IBM"),
-						    portfolio.fetch(LocalDate.of(2017, 01, 2017)),
+						    portfolio.fetch(LocalDate.of(25, JANUARY, 2017)),
 						    risk.check("IBM", 12, -0.1, 0)
 						        .filter(Result::isSecure),
 						    Order::build
@@ -290,6 +291,10 @@
 				</section>
 
 				<section>
+					<h1>What's next?</h1>
+				</section>
+
+				<section>
 					<h1>Thank you!</h1>
 				</section>
 
@@ -324,6 +329,15 @@
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
+
+			window.addEventListener("mousedown", handleClick, false);
+			window.addEventListener("contextmenu", function(e) { e.preventDefault(); }, false);
+
+			function handleClick(e) {
+				e.preventDefault();
+				if(e.button === 0) Reveal.next(); 
+				if(e.button === 2) Reveal.prev(); 
+			}
 
 		</script>
 
