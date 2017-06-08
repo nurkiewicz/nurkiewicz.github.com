@@ -130,6 +130,7 @@ body {
   quotes: none; }
 
 .reveal blockquote {
+  font-size: 1.3em;
   display: block;
   position: relative;
   width: 70%;

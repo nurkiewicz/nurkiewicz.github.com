@@ -32,6 +32,16 @@
 	</head>
 
 	<body>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-41796111-1', 'nurkiewicz.github.io');
+		  ga('send', 'pageview');
+
+		</script>
 
 		<div class="reveal">
 
@@ -39,14 +49,14 @@
 			<div class="slides">
 				<section>
 					<h1>Asynchronous by default, synchronous when necessary</h1>
-					<p>
-						<a href="http://nurkiewicz.com">Tomasz Nurkiewicz</a> / <a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a>
-					</p>
+					<h2>
+						<a href="http://nurkiewicz.com">Tomasz Nurkiewicz</a> | <a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a> | <a href="http://nurkiewicz.com/">nurkiewicz.com</a>
+					</h2>
 				</section>
 
 				<section>
 					<h1>Agenda</h1>
-					tl;dr: distributed systems &amp; event sourcing 
+					<h2>tl;dr: distributed systems &amp; event sourcing</h2>
 				</section>
 
 				<section>
@@ -174,8 +184,8 @@
 
 				<section>
 					<h1>Fallacies of distributed computing</h1>
-					<p>1994</p>
-					<p>#AlternativeFacts</p>
+					<h2>1994</h2>
+					<h2>#AlternativeFacts</h2>
 				</section>
 
 				<section>
@@ -194,19 +204,19 @@
 				<section>
 					<h1>3. Bandwidth is infinite</h1>
 					<hr/>
-					<p>Batching, compression</p>
+					<h2>Batching, compression</h2>
 				</section>
 
 				<section>
 					<h1>4. The network is secure</h1>
 					<hr/>
-					<p>SSL, OAuth</p>
+					<h2>SSL, OAuth</h2>
 				</section>
 
 				<section>
 					<h1>6. There is one administrator</h1>
 					<hr/>
-					<p>Escalation, root cause</p>
+					<h2>Escalation, root cause</h2>
 				</section>
 
 				<section>
@@ -220,7 +230,7 @@
 
 				<section>
 					<h1>Hollywood principle</h1>
-					<h3>...on architecture level</h3>
+					<h2>...on architecture level</h2>
 				</section>
 
 				<section>
@@ -242,6 +252,17 @@
 						  .filter(Order::isProfitable)
 						  .flatMap(stock::buy)
 					</code></pre>
+				</section>
+
+				<section>
+					<blockquote>
+						One of the golden rules of service architecture is that <strong>you cannot query data from a service</strong>. 
+					</blockquote>
+					<blockquote>
+						If you allow queries, you’ve [...] violated the most fundamental tenants of building a service, which is you tell a service what to do [...]
+					</blockquote>
+					<p>Scott Bellware</p>
+					<small><a href="https://www.hanselminutes.com/578/ruby-and-rails-in-the-real-world-with-scott-bellware">www.hanselminutes.com/578/ruby-and-rails-in-the-real-world-with-scott-bellware</a> (20:30)</small>
 				</section>
 
 				<section>
@@ -287,6 +308,109 @@
 				</section>
 
 				<section>
+					<h1>Example: blockchain</h1>
+				</section>
+
+				<section>
+					<h1>Examples: banking</h1>
+				</section>
+
+				<section>
+					<h1>"Banking": the hipster way</h1>
+					<blockquote>
+						By sending thousands of simultaneous requests, the attacker was able to "move" coins from one user account to another until the sending account was overdrawn, before balances were updated
+					</blockquote>		
+					<small><a href="http://hackingdistributed.com/2014/04/06/another-one-bites-the-dust-flexcoin/">hackingdistributed.com/2014/04/06/another-one-bites-the-dust-flexcoin/</a></small>
+				</section>
+
+				<section>
+					<h1>What went wrong?</h1>
+					<h2>Race conditions</h2>
+					<h2>Mutability</h2>
+					<h2>No audit data</h2>
+				</section>
+
+				<section>
+					<h1>Academic approach</h1>
+					<pre><code class="hljs" data-trim>
+						BEGIN;
+							-- Make sure no overdraft on Alice's account
+
+							UPDATE accounts SET balance = balance - 100.00
+							    WHERE name = 'Alice';
+
+							UPDATE accounts SET balance = balance + 100.00
+							    WHERE name = 'Bob';
+						COMMIT;
+					</code></pre>
+					<small><a href="https://www.postgresql.org/docs/9.6/static/tutorial-transactions.html">www.postgresql.org/docs/9.6/static/tutorial-transactions.html</a></small>
+				</section>
+
+				<section>
+					<h1>Banking: real approach</h1>
+					<blockquote>
+						SWIFT [...] providing a secure, reliable, and scalable network for the smooth <strong>movement of messages</strong>
+					</blockquote>
+					<small><a href="http://www.investopedia.com/articles/personal-finance/050515/how-swift-system-works.asp">www.investopedia.com/articles/personal-finance/050515/how-swift-system-works.asp</a></small>
+				</section>
+
+				<section>
+					<h1>Implementation</h1>
+					<pre><code class="hljs" data-trim>
+					// ...
+					MoneyTransferred(
+						from = 'Alice',
+						to = 'Bob',
+						amount = 100.0
+					)
+					// ...
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Full stack...</h1>
+					<h2>Atwood's Law</h2>
+					<blockquote>any application that can be written in JavaScript, will eventually be written in JavaScript</blockquote>
+					<small><a href="https://blog.codinghorror.com/the-principle-of-least-power/">blog.codinghorror.com/the-principle-of-least-power</a></small>
+				</section>
+
+				<section>
+					<img src="img/docker_js.png">
+					<hr/>
+					<small>
+						<a href="https://twitter.com/jimplush/status/561292521418928128">twitter.com/jimplush/status/561292521418928128</a>
+					</small>
+				</section>
+
+				<section>
+					<h1>Redux</h1>
+					<a href="http://redux.js.org/">redux.js.org</a>
+				</section>
+
+				<section>
+					<h1>Redux</h1>
+					<pre><code class="hljs" data-trim>
+						function counter(state = 0, action) {
+						  switch (action.type) {
+						  case 'INCREMENT':
+						    return state + 1
+						  case 'DECREMENT':
+						    return state - 1
+						  default:
+						    return state
+						  }
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h1>Event store implementation</h1>
+					<h2><a href="https://geteventstore.com/">geteventstore.com</a></h2>
+					<h2><a href="https://kafka.apache.org/">kafka.apache.org</a></h2>
+					<h2><a href="http://eventstore.js.org/">eventstore.js.org</a></h2>
+				</section>
+
+				<section>
 					<h1>Caveats</h1>
 				</section>
 
@@ -296,6 +420,7 @@
 
 				<section>
 					<h1>Rebuilding costs</h1>
+					<h2>Snapshots</h2>
 				</section>
 	
 				<section>
@@ -308,9 +433,9 @@
 
 				<section>
 					<h1>Thank you!</h1>
-					<p>
-						<a href="http://nurkiewicz.com">Tomasz Nurkiewicz</a> / <a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a>
-					</p>
+					<h3>
+						<a href="http://nurkiewicz.com">Tomasz Nurkiewicz</a> | <a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a> | <a href="http://nurkiewicz.com/">nurkiewicz.com</a>
+					</h3>
 				</section>
 
 			</div>
