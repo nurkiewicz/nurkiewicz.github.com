@@ -255,13 +255,13 @@
 				</section>
 
 				<section>
+					<h3>Scott Bellware:</h3>
 					<blockquote>
 						One of the golden rules of service architecture is that <strong>you cannot query data from a service</strong>. 
 					</blockquote>
 					<blockquote>
 						If you allow queries, you’ve [...] violated the most fundamental tenants of building a service, which is you tell a service what to do [...]
 					</blockquote>
-					<p>Scott Bellware</p>
 					<small><a href="https://www.hanselminutes.com/578/ruby-and-rails-in-the-real-world-with-scott-bellware">www.hanselminutes.com/578/ruby-and-rails-in-the-real-world-with-scott-bellware</a> (20:30)</small>
 				</section>
 
@@ -308,11 +308,14 @@
 				</section>
 
 				<section>
-					<h1>Example: blockchain</h1>
+					<h1>Use case: blockchain</h1>
+					<img src="img/Blockchain.png" width="600"/>
+					<hr/>
+					<small><a href="https://en.wikipedia.org/wiki/Blockchain">en.wikipedia.org/wiki/Blockchain</a></small>
 				</section>
 
 				<section>
-					<h1>Examples: banking</h1>
+					<h1>Use case: banking</h1>
 				</section>
 
 				<section>
@@ -325,9 +328,9 @@
 
 				<section>
 					<h1>What went wrong?</h1>
-					<h2>Race conditions</h2>
-					<h2>Mutability</h2>
 					<h2>No audit data</h2>
+					<h2>Mutability</h2>
+					<h2>Race conditions</h2>
 				</section>
 
 				<section>
@@ -383,7 +386,7 @@
 				</section>
 
 				<section>
-					<h1>Redux</h1>
+					<h1>Use case: Redux</h1>
 					<a href="http://redux.js.org/">redux.js.org</a>
 				</section>
 
@@ -392,13 +395,13 @@
 					<pre><code class="hljs" data-trim>
 						function counter(state = 0, action) {
 						  switch (action.type) {
-						  case 'INCREMENT':
-						    return state + 1
-						  case 'DECREMENT':
-						    return state - 1
-						  default:
-						    return state
-						  }
+						    case 'INCREMENT':
+						      return state + 1
+						    case 'DECREMENT':
+						      return state - 1
+						    default:
+						      return state
+						    }
 						}
 					</code></pre>
 				</section>
@@ -433,6 +436,10 @@
 
 				<section>
 					<h1>Thank you!</h1>
+					<img src="img/qr_url.png"/>
+					<h2>
+						<a href="http://nurkiewicz.github.io/talks/2017/async">nurkiewicz.github.io/talks/2017/async</a>
+					</h2>
 					<h3>
 						<a href="http://nurkiewicz.com">Tomasz Nurkiewicz</a> | <a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a> | <a href="http://nurkiewicz.com/">nurkiewicz.com</a>
 					</h3>
