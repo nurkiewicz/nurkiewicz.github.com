@@ -164,11 +164,14 @@
 				</section>
 
 				<section>
+					<h1>
+						<a href="https://github.com/OpenFeign/feign">Feign</a>
+					</h1>
 					<pre><code class="hljs" data-trim>
 						@RequestLine("GET /triple/{x}")
 						long triple(@Param("x") long x);
 					</code></pre>
-					<a href="https://github.com/OpenFeign/feign">Feign</a>
+					
 				</section>
 
 				<section>
@@ -255,7 +258,7 @@
 				</section>
 
 				<section>
-					<h3>Scott Bellware:</h3>
+					<h2>Scott Bellware:</h2>
 					<blockquote>
 						One of the golden rules of service architecture is that <strong>you cannot query data from a service</strong>. 
 					</blockquote>
@@ -457,6 +460,7 @@
 			// More info https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: false,
+				defaultTiming: 60,
 				progress: false,
 				history: true,
 				center: true,
