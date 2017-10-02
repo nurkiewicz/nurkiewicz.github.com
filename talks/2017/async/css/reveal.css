@@ -1363,3 +1363,9 @@ body {
 
 .zoomed .reveal .roll span:after {
   visibility: hidden; }
+
+.footer {
+  position: absolute;
+  right: 10px;
+  bottom: 0px;
+}
