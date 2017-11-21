@@ -16,6 +16,7 @@ function initMap() {
 	  center: {lat: 50, lng: -20}
 	});
 	let places = findPlaces();
+	console.info(places);
 	for(place in places) {
 		if(places.hasOwnProperty(place)) {
 			new google.maps.Marker({
