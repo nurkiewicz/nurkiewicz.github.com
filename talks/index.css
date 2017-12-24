@@ -1,5 +1,35 @@
+/* http://www.colourlovers.com/palette/57650/She_Sells_Seashells. */
+
 #map {
   margin: 10px;
   height: 600px;
-  border: 1px solid black;
+  border: 1px solid #8B7A5E;
+}
+
+body {
+	font-family: Arial, Verdana, sans-serif;
+}
+
+tr:nth-child(odd) {
+	background-color: #FFEFD3
+}
+
+tr:nth-child(even) {
+	background-color: #FFFEE4
+}
+
+table {
+	border: 1px solid #8B7A5E;
+	padding: 0;
+	border-spacing: 0;
+}
+
+td {
+	border-top: 1px solid #8B7A5E;
+	border-right: 1px solid #D0ECEA;
+	padding: 4px;
+}
+
+th {
+	background-color: #D0ECEA;
 }
