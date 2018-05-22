@@ -57,7 +57,15 @@
 				</section>
 
 				<section>
+					<blockquote>
+						[...] a very particular set of skills, skills [...] acquired over a very long career. Skills that make me a nightmare for people like you
+					</blockquote>
+					<p class="fragment">Liam Neeson on reactive programming</p>
+				</section>
+
+				<section>
 					<h3>Who am I?</h3>
+					<img src="img/javachampion.jpg" width="80"/>
 				</section>
 
 				<section>
@@ -140,7 +148,7 @@ cart.forEach(item -&gt; sendEmail(item, id));
 
 				<section>
 					<pre><code data-trim>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User user = ws.findUserByName(name)
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;User&nbsp;&nbsp;user = ws.findUserByName(name)
 					</code></pre>					
 					<pre class="fragment"><code data-trim>
 						Mono&lt;User&gt; user = ws.findUserByName(name)
@@ -279,7 +287,6 @@ ws
 					<a class="source" href="https://www.innoq.com/en/blog/the-language-of-maths-is-not-the-language-of-your-business/">www.innoq.com/en/blog/the-language-of-maths-is-not-the-language-of-your-business/</a>
 				</section>
 
-<!--
 				<section>
 					cont.
 					<blockquote>
@@ -287,20 +294,21 @@ ws
 					</blockquote>
 					<a class="source" href="https://www.innoq.com/en/blog/the-language-of-maths-is-not-the-language-of-your-business/">www.innoq.com/en/blog/the-language-of-maths-is-not-the-language-of-your-business/</a>
 				</section>
--->
 
 				<section>
 					<blockquote>
 						Are <code>Mono</code> and <code>Flux</code> pervasive in your domain model? 
 					</blockquote>
-					<blockquote>
-						Unless your core domain is infectious diseases, Reactor is not the language used by your domain experts. 
-					</blockquote>
+					<div class="fragment">
+						<blockquote>
+							Unless your core domain is infectious diseases, Reactor is not the language used by your domain experts. 
+						</blockquote>
 						<p style="line-height: 0.25em; text-align: left; padding-left: 40%">
 							<a class="source" href="https://en.wikipedia.org/wiki/Infectious_mononucleosis">en.wikipedia.org/wiki/Infectious_mononucleosis</a>
 							<br/>
 							<a class="source" href="https://en.wikipedia.org/wiki/Dysentery">en.wikipedia.org/wiki/Dysentery</a>
 						</p>
+					</div>
 				</section>
 
 				<section>
@@ -362,7 +370,7 @@ ws
 
 				<section>
 					<h2>10x developer?</h2>
-					<p>Enable 10 other developers</p>
+					<p class="fragment">Enable 10 other developers</p>
 				</section>
 
 				<section>
@@ -448,7 +456,6 @@ ws
 					</table>
 				</section>
 
-<!--
 				<section>
 					<pre><code data-trim>
 java.sql.SQLTransientConnectionException: HikariPool-1 -
@@ -490,7 +497,7 @@ java.sql.SQLTransientConnectionException: HikariPool-1 -
       [...73 frames omitted...]
 					</code></pre>
 				</section>
--->
+
 				<section>
 					<h3>
 						<blockquote>
@@ -717,7 +724,7 @@ Caused by: akka.pattern.AskTimeoutException: Ask timed out on [Actor[akka://appl
 					<h2>Timing things</h2>
 					Timers are a bit counterintuitive to get right
 				</section>
-<!-- 
+
 				<section>
 					<pre><code data-trim>
 import io.micrometer.core.instrument.Timer;
@@ -730,11 +737,10 @@ User user = timer.recordCallable(this::loadUser);
 
 				<section>
 					<pre><code data-trim>
-						Mono&lt;User&gt; user = timer.recordCallable(this::loadUser);
+						Mono&lt;User&gt; user = timer.recordCallable(this::loadUserAsync);
 					</code></pre>
 				</section>
 
--->
 				<section>
 					<pre><code data-trim>
 Mono&lt;User&gt; Mono
@@ -751,7 +757,7 @@ Mono&lt;User&gt; Mono
  				<section>
 					<h1>Key Takeaways</h1>
 				</section>
-<!--
+
 				<section>
 					<h2>Spring Boot 2 changes everything</h2>
 				</section>
@@ -797,7 +803,7 @@ RouterFunction&lt;ServerResponse&gt; route() {
 }
 					</code></pre>
 				</section>
--->
+
 				<section>
 					<h2>Reactive programming is awesome</h2>
 					<h3 class="fragment">Seriously</h3>
