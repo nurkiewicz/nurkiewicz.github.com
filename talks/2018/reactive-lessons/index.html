@@ -93,12 +93,6 @@
 				</section>
 
 				<section>
-					<p>I read</p>
-					<p class="fragment">a lot of</p>
-					<p class="fragment"><img src="img/high-scalability-logo.jpg" class="stretch"/></p>
-				</section>
-
-				<section>
 					<img src="img/muppets.png" class="stretch" />
 				</section>
 
@@ -501,8 +495,7 @@ java.sql.SQLTransientConnectionException: HikariPool-1 -
 				<section>
 					<h3>
 						<blockquote>
-							Async, by contrast, is callback based and driven by an event loop
-							[...] stack trace is meaningless when trying to follow a request.
+							stack trace is meaningless when trying to follow a request.
 						</blockquote>
 					</h3>
 					<a class="source" href="https://medium.com/netflix-techblog/zuul-2-the-netflix-journey-to-asynchronous-non-blocking-systems-45947377fb5c">medium.com/netflix-techblog/zuul-2-the-netflix-journey-to-asynchronous-non-blocking-systems-45947377fb5c</a>
@@ -717,7 +710,7 @@ Caused by: akka.pattern.AskTimeoutException: Ask timed out on [Actor[akka://appl
 					</dl>
 					<a class="source" href="https://developer.lightbend.com/docs/cinnamon/2.5.x/instrumentations/akka/akka.html#actor-metrics">developer.lightbend.com/docs/cinnamon/2.5.x/instrumentations/akka/akka.html</a>
 				</section>
-
+<!--
 				<section>
 					<h2>Timing things</h2>
 					Timers are a bit counterintuitive to get right
@@ -752,6 +745,7 @@ Mono&lt;User&gt; Mono
 }
 					</code></pre>
 				</section>
+-->
  				<section>
 					<h1>Key Takeaways</h1>
 				</section>
@@ -831,6 +825,8 @@ RouterFunction&lt;ServerResponse&gt; route() {
 						<h2>Thank you!</h2>
 						<img src="img/qrcode.svg"/>
 						<hr/>
+						<a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a>
+						<br/>
 						<a href="http://nurkiewicz.github.io/talks/2018/reactive-lessons">nurkiewicz.github.io/talks/2018/reactive-lessons</a>
 					</section>
 
