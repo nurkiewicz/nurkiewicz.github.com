@@ -313,12 +313,69 @@ println recommendationVar.val
 				</section>
 
 				<section>
+					<h2><code>async/await</code></h2>
+				</section>
+
+				<section>
+					<pre><code class="hljs" data-trim>
+public CompletableFuture&lt;Boolean&gt; buyItem(
+			String itemTypeId, int cost)
+    {
+        return bank.decrement(cost)
+            .thenCompose(result -> {
+                if(!result) {
+                    return completedFuture(false);
+                }
+                return inventory.giveItem(itemTypeId)
+                	.thenApply(res -> true);
+            });
+    }
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Electronic Arts?</h2>
+					<ul>
+						<li>FIFA</li>
+						<li>Battlefield</li>
+						<li>The Sims</li>
+						<li class="fragment">
+							<a href="https://github.com/electronicarts/ea-async">github.com/electronicarts/ea-async</a>
+						</li>
+					</ul>
+				</section>
+
+				<section>
+					<pre><code class="hljs" data-trim>
+    public CompletableFuture&lt;Boolean&gt; buyItem(
+    			String itemTypeId, int cost)
+    {
+        if(!await(bank.decrement(cost))) {
+            return completedFuture(false);
+        }
+        try {
+            await(inventory.giveItem(itemTypeId));
+            return completedFuture(true);
+        } catch (Exception ex) {
+            await(bank.refund(cost));
+            throw new AppException(ex);
+        }
+    }
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>😢</h2>
+					<code>java -javaagent:ea-async-1.2.2.jar</code>
+				</section>
+
+				<section>
 					<h2>Agents (Clojure)</h2>
 					<pre><code class="hljs" data-trim>
-(def a (agent ()))
+(def agn (agent ()))
 (dotimes [i 5]
-  (send a #(conj % i)))
-(-> a deref print)
+  (send agn #(conj % i)))
+(-> agn deref print)
   					</code></pre>
 				</section>
 
@@ -426,6 +483,20 @@ for (i in 1..1_000_000)
         someWork()
     }
 					</code></pre>
+				</section>
+
+				<section>
+					<h2>Project Loom</h2>
+					<a href="https://wiki.openjdk.java.net/display/loom/Main">wiki.openjdk.java.net/display/loom/Main</a>
+				</section>
+
+				<section>
+					<h4><code>java.lang.Continuation</code></h4>
+					<img src="img/fibers.png"/>
+				</section>
+
+				<section>
+					<h2>Let's get practical!</h2>
 				</section>
 
 				<section>
