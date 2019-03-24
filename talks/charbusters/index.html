@@ -1307,13 +1307,34 @@ int graphemes(String str) {
 				</section>
 
 				<section>
-					<h2>Thank you!</h2>
-					<img src="img/qr.svg" class="stretch"/>
-					<p>
-						<small>
-							<a href="http://nurkiewicz.github.io/talks/charbusters">nurkiewicz.github.io/talks/charbusters</a>
-						</small>
-					</p>
+					<section>
+						<h2>Thank you!</h2>
+						<img src="img/qr.svg" class="stretch"/>
+						<p>
+							<small>
+								<a href="http://nurkiewicz.github.io/talks/charbusters">nurkiewicz.github.io/talks/charbusters</a>
+							</small>
+						</p>
+					</section>
+					<section>
+						<pre><code data-trim>
+							public static void main(String[] args) throws UnsupportedEncodingException {
+								var s = "\uD83D\uDC69\uD83C\uDFFE\u200D\uD83D\uDE80";
+								System.out.println(s);
+								final byte[] bytes = s.getBytes("UTF-32BE");
+								for (byte b : bytes) {
+									System.out.print(toHex(b) + " ");
+								}
+							}
+						</code></pre>
+						<pre><code data-trim>
+							private static String toHex(byte b) {
+								final int unsigned = b & 0xFF;
+								final String s = Integer.toHexString(unsigned).toUpperCase();
+								return s.length() == 1? "0" + s : s;
+							}
+						</code></pre>
+					</section>
 				</section>
 
 			</div>
