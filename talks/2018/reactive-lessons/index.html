@@ -60,6 +60,9 @@
 					<p>
 						Tomasz Nurkiewicz
 					</p>
+					<p>
+						<a href="http://twitter.com/tnurkiewicz">@tnurkiewicz</a>
+					</p>
 				</section>
 
 				<section>
@@ -100,6 +103,9 @@
 				<section>
 					<p>I wrote a book with the word <q>reactive</q> in the title</p>
 					<img src="img/rxjava-cover.png" class="stretch"/>
+					<p>
+						<small>(2016)</small>
+					</p>
 				</section>
 
 				<section>
@@ -316,7 +322,7 @@ ws
 				</section>
 
 				<section>
-					<h1>Universal measure of code quality?</h1>
+					<h2>Universal measure of code quality?</h2>
 				</section>
 
 				<section>
@@ -482,23 +488,23 @@ java.sql.SQLTransientConnectionException: HikariPool-1 -
 					<pre><code data-trim>
 "http-nio-9099-exec-2@6415" daemon prio=5 tid=0x28 nid=NA waiting
   java.lang.Thread.State: WAITING
-      [...4 frames omitted...]
-      at org.apache.activemq.transport.FutureResponse.getResult
-      at o.a.a.transport.ResponseCorrelator.request
-      at o.a.a.ActiveMQConnection.syncSendPacket
-      at o.a.a.ActiveMQConnection.syncSendPacket
-      at o.a.a.ActiveMQSession.syncSendPacket
-      at o.a.a.ActiveMQMessageProducer.&lt;init&gt;
-      at o.a.a.ActiveMQSession.createProducer
-      [...5  frames omitted...]
-      at org.springframework.jms.core.JmsTemplate.send
-      at com.nurkiewicz.Sample$sendMessageAfterCommit$1.afterCommit
-      at org.springframework.transaction.support.TransactionSynchronizationUtils.invokeAfterCommit
-      at o.s.t.s.TransactionSynchronizationUtils.triggerAfterCommit
-      at o.s.t.s.AbstractPlatformTransactionManager.triggerAfterCommit
-      at o.s.t.s.AbstractPlatformTransactionManager.processCommit
-      at o.s.t.s.AbstractPlatformTransactionManager.commit
-      [...73 frames omitted...]
+    [...4 frames omitted...]
+    at org.apache.activemq.transport.FutureResponse.getResult
+    at o.a.a.transport.ResponseCorrelator.request
+    at o.a.a.ActiveMQConnection.syncSendPacket
+    at o.a.a.ActiveMQConnection.syncSendPacket
+    at o.a.a.ActiveMQSession.syncSendPacket
+    at o.a.a.ActiveMQMessageProducer.&lt;init&gt;
+    at o.a.a.ActiveMQSession.createProducer
+    [...5  frames omitted...]
+    at org.springframework.jms.core.JmsTemplate.send
+    at com.nurkiewicz.Sample$sendMessageAfterCommit$1.afterCommit
+    at org.springframework.transaction.support.TransactionSynchronizationUtils.invokeAfterCommit
+    at o.s.t.s.TransactionSynchronizationUtils.triggerAfterCommit
+    at o.s.t.s.AbstractPlatformTransactionManager.triggerAfterCommit
+    at o.s.t.s.AbstractPlatformTransactionManager.processCommit
+    at o.s.t.s.AbstractPlatformTransactionManager.commit
+    [...73 frames omitted...]
 					</code></pre>
 				</section>
 
@@ -608,10 +614,10 @@ java.lang.NullPointerException:
 				<section>
 					<pre><code data-trim>
 play.api.http.HttpErrorHandlerExceptions$$anon$1:
-			Execution exception[[AskTimeoutException: 
-			Ask timed out on
-			[Actor[akka://application/user/$a#-948062154]]
-			after [60000 ms]]]
+		Execution exception[[AskTimeoutException: 
+		Ask timed out on
+		[Actor[akka://application/user/$a#-948062154]]
+		after [60000 ms]]]
     at play.api.http.HttpErrorHandlerExceptions$.throwableToUsefulException(HttpErrorHandler.scala:265) ~[play_2.11-2.4.3.jar:2.4.3]
     at play.api.http.DefaultHttpErrorHandler.onServerError(HttpErrorHandler.scala:191) ~[play_2.11-2.4.3.jar:2.4.3]
     at play.api.GlobalSettings$class.onError(GlobalSettings.scala:179) [play_2.11-2.4.3.jar:2.4.3]
