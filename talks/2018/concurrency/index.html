@@ -478,7 +478,7 @@ agentActor ? Deref foreach println
 					<h2>Kotlin</h2>
 					<p><code>-Xcoroutines=enable</code></p>
 					<pre><code class="hljs" data-trim>
-launch {
+GlobalScope.launch {
     delay(1000)
     println("Hello")
 }
@@ -489,7 +489,7 @@ launch {
 					<h2>Lightweight threads</h2>
 					<pre><code class="hljs" data-trim>
 for (i in 1..1_000_000)
-    launch {
+    GlobalScope.launch {
         someWork()
     }
 					</code></pre>
