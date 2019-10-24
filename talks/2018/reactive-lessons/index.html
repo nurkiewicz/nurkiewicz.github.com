@@ -71,7 +71,13 @@
 
 				<section>
 					<blockquote>
-						[...] a very particular set of skills, skills [...] acquired over a very long career. Skills that make me a nightmare for people like you
+						[...] a very particular set of skills, skills [...] acquired over a very long career. Skills that make me a nightmare for 
+						<br/>
+						<span style='color:red;text-decoration:line-through'>
+							<span style='color:black'>people like you</span>
+						</span>
+						<br/>
+						other developers
 					</blockquote>
 					<p class="fragment">Liam Neeson on reactive programming</p>
 				</section>
@@ -82,7 +88,7 @@
 				</section>
 
 				<section>
-					<h3>I built complex reactive systems</h3>
+					<h3>I built <em>complex</em> reactive systems</h3>
 					<p class="fragment">* not really proud about the <q>complex</q> part</p>
 				</section>
 
@@ -450,7 +456,7 @@ ws
 				</section>
 
 				<section>
-					<h1>Let's talk about maintenance</h1>
+					<h2>Let's talk about maintenance</h2>
 				</section>
 
 				<section>
@@ -534,6 +540,19 @@ java.sql.SQLTransientConnectionException: HikariPool-1 -
 						</blockquote>
 					</h3>
 					<a class="source" href="https://medium.com/netflix-techblog/zuul-2-the-netflix-journey-to-asynchronous-non-blocking-systems-45947377fb5c">medium.com/netflix-techblog/zuul-2-the-netflix-journey-to-asynchronous-non-blocking-systems-45947377fb5c</a>
+				</section>
+
+				<section>
+					<h3>IntelliJ IDEA</h3>
+					<img src="img/intellij.png"/>
+					<hr/>
+					<a class="source" href="https://blog.jetbrains.com/idea/2019/10/whats-new-in-intellij-idea-2019-3-eap6-improved-reactor-support-and-a-huge-pack-of-fixes/">What’s New in IntelliJ IDEA 2019.3 EAP6</a>
+				</section>
+
+				<section>
+					<pre><code data-trim>
+						Hooks.onOperatorDebug()
+					</code></pre>
 				</section>
 
 				<section>
@@ -759,6 +778,14 @@ Mono&lt;User&gt; Mono
                     currentTimeMillis() - start, MILLISECONDS))
     );
 }
+					</code></pre>
+				</section>
+
+				<section>
+					<pre><code data-trim>
+						loadUserAsync()
+							.tag("operation", "loadUser")
+							.metrics()
 					</code></pre>
 				</section>
 
