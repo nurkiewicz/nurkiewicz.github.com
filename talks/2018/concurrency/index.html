@@ -168,19 +168,6 @@ Future&lt;Object&gt; f1 = executor.submit(work::perform);
 				</section>
 
 				<section>
-					<h2>Dropwizard metrics</h2>
-					<pre><code class="hljs" data-trim>
-MetricRegistry metricRegistry = new MetricRegistry();
-
-Slf4jReporter reporter = Slf4jReporter
-        .forRegistry(metricRegistry)
-        .outputTo(LoggerFactory.getLogger(Some.class))
-        .build();
-reporter.start(1, SECONDS);
-					</code></pre>
-				</section>
-
-				<section>
 					<h2>Monitor queue length</h2>
 					<pre><code class="hljs">BlockingQueue&lt;Runnable&gt; queue = new LinkedBlockingDeque&lt;&gt;(100);
 
