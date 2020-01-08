@@ -177,6 +177,18 @@ metricRegistry.register("queue", queueLen);
 				</section>
 
 				<section>
+					<h2>Micrometer</h2>
+					<pre><code class="hljs" data-trim>
+var executor = Executors.newFixedThreadPool(20);
+ExecutorServiceMetrics.monitor(
+		registry, 
+		executor, 
+		"executors", 
+		Tags.of("key", "value"));
+					</code></pre>
+				</section>
+
+				<section>
 					<h2>Other metrics</h2>
 					<ul>
 						<li>Thread utilization</li>
@@ -250,14 +262,14 @@ CompletableFuture&lt;GeoLocation&gt; geoFuture =
   CompletableFuture.supplyAsync(this::trackDevice);
 					</code></pre>
 
-					<pre><code class="hljs" data-trim>
+					<pre class="fragment"><code class="hljs" data-trim>
 CompletableFuture&lt;Recommendations&gt; recommendFuture =
   userFuture.thenCombine(geoFuture,
     (User user, GeoLocation geo) -&gt;
       buildRecommendations(user, geo));
 					</code></pre>
 
-					<pre><code class="hljs" data-trim>
+					<pre class="fragment"><code class="hljs" data-trim>
 CompletableFuture&lt;String&gt; bestFuture =
      recommendFuture.thenCompose(
        (Recommendations r) -&gt; guessBest(r));
@@ -265,20 +277,20 @@ CompletableFuture&lt;String&gt; bestFuture =
 				</section>
 
 				<section>
-					<h2>RxJava</h2>
+					<h2>RxJava / Reactor</h2>
 					<pre><code class="hljs" data-trim>
 Flowable&lt;Tweet&gt; tweets = allTweets();
 
 Flowable&lt;List&lt;String&gt;&gt; batches = tweets
   .filter(tweet -&gt; tweet.hasHashTag("#java"))
-  .sample(100, MILLISECONDS)
+  .sample(Duration.ofMillis(100))
   .map(Tweet::contents)
   .buffer(10);
   					</code></pre>
 				</section>
 
 				<section>
-					<h2>Reactor</h2>
+					<h2>RxJava / Reactor (cont.)</h2>
 					<pre><code class="hljs" data-trim>
 Mono
 	.fromCallable(this::blockingMethod)
@@ -332,14 +344,22 @@ public CompletableFuture&lt;Boolean&gt; buyItem(
 
 				<section>
 					<h2>Electronic Arts?</h2>
-					<ul>
-						<li>FIFA</li>
-						<li>Battlefield</li>
-						<li>The Sims</li>
-						<li class="fragment">
-							<a href="https://github.com/electronicarts/ea-async">github.com/electronicarts/ea-async</a>
-						</li>
-					</ul>
+					<table>
+						<tr>
+							<td class="fragment">
+								<img src="img/ea-fifa-20.jpg" height="300"/>
+							</td>
+							<td class="fragment">
+								<img src="img/ea-battlefield-4.jpg" height="300"/>
+							</td>
+							<td class="fragment">
+								<img src="img/ea-the-sims-4.jpg" height="300"/>
+							</td>
+						</tr>
+					</table>
+					<h3 class="fragment">
+						<a href="https://github.com/electronicarts/ea-async">github.com/electronicarts/ea-async</a>
+					</h3>
 				</section>
 
 				<section>
@@ -363,7 +383,7 @@ public CompletableFuture&lt;Boolean&gt; buyItem(
 
 				<section>
 					<h2>😢</h2>
-					<code>java -javaagent:ea-async-1.2.2.jar</code>
+					<code>java -javaagent:ea-async-1.2.3.jar</code>
 				</section>
 
 				<section>
@@ -383,55 +403,6 @@ public CompletableFuture&lt;Boolean&gt; buyItem(
 (def ch (async/chan 128))
 (async/&gt;!! ch "Foo")
 (async/&lt;!! ch)  ;; "Foo"
-  					</code></pre>
-				</section>
-
-				<section>
-					<h2>Actors - example</h2>
-					<pre><code class="hljs" data-trim>
-class Counter extends Actor {
-
-  private[this] var counter = 0
- 
-  override def receive = {
-    case x: Int =>
-    	counter += x
-        sender() ! counter
-  }
-}
-					</code></pre>
-				</section>
-
-				<section>
-					<h2>Actors (Scala/Java)</h2>
-					<pre><code class="hljs" data-trim>
-class AgentActor[T](initial: T) extends Actor {
-
-  private[this] var state = initial
-
-  override def receive = {
-    case Apply(fun: (T => T)) =>
-      state = fun(state)
-    case Deref =>
-      sender() ! state
-  }
-}
-  					</code></pre>
-				</section>
-
-				<section>
-					<h2>Actors - implementing agents</h2>
-					<pre><code class="hljs" data-trim>
-val system = ActorSystem("Main")
-val agentActor = system.actorOf(Props(new AgentActor("")))
-
-agentActor ! Apply((s: String) => s + "a")
-agentActor ! Apply((s: String) => s + "b")
-agentActor ! Apply((s: String) => s + "c")
-agentActor ! Apply((s: String) => s.toUpperCase())
-
-implicit val timeout: Timeout = Timeout(1, SECONDS)
-agentActor ? Deref foreach println
   					</code></pre>
 				</section>
 
@@ -462,8 +433,60 @@ agentActor ? Deref foreach println
 				</section>
 
 				<section>
-					<h2>Kotlin</h2>
-					<p><code>-Xcoroutines=enable</code></p>
+					
+					<section>
+						<h2>Actors - example</h2>
+						<pre><code class="hljs" data-trim>
+class Counter extends Actor {
+
+  private[this] var counter = 0
+ 
+  override def receive = {
+    case x: Int =>
+    	counter += x
+        sender() ! counter
+  }
+}
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Actors (Scala/Java)</h2>
+						<pre><code class="hljs" data-trim>
+class AgentActor[T](initial: T) extends Actor {
+
+  private[this] var state = initial
+
+  override def receive = {
+    case Apply(fun: (T => T)) =>
+      state = fun(state)
+    case Deref =>
+      sender() ! state
+  }
+}
+	  					</code></pre>
+					</section>
+
+					<section>
+						<h2>Actors - implementing agents</h2>
+						<pre><code class="hljs" data-trim>
+val system = ActorSystem("Main")
+val agentActor = system.actorOf(Props(new AgentActor("")))
+
+agentActor ! Apply((s: String) => s + "a")
+agentActor ! Apply((s: String) => s + "b")
+agentActor ! Apply((s: String) => s + "c")
+agentActor ! Apply((s: String) => s.toUpperCase())
+
+implicit val timeout: Timeout = Timeout(1, SECONDS)
+agentActor ? Deref foreach println
+	  					</code></pre>
+					</section>
+
+				</section>
+
+				<section>
+					<h2>Kotlin - coroutines</h2>
 					<pre><code class="hljs" data-trim>
 GlobalScope.launch {
     delay(1000)
@@ -480,6 +503,24 @@ for (i in 1..1_000_000)
         someWork()
     }
 					</code></pre>
+				</section>
+
+				<section>
+					<pre><code class="hljs" data-trim>
+suspend fun buyItem(itemTypeId: String, cost: Int): Boolean {
+    if(bank.decrement(cost)) {
+        return false
+    }
+    try {
+        inventory.giveItem(itemTypeId)
+        return true
+    } catch (ex: Exception) {
+        bank.refund(cost)
+        throw AppException(ex);
+    }
+}
+					</code></pre>
+
 				</section>
 
 				<section>
@@ -598,12 +639,8 @@ wordCount.merge("Foo", 1, (x, y) -&gt; x + y);
 V merge(K key, V value, BiFunction&lt;V, V, V&gt; mapping) {
     V oldValue = get(key);
     V newValue = (oldValue == null) ? value :
-       mapping.apply(oldValue, value);
-    if(newValue == null) {
-        remove(key);
-    } else {
-        put(key, newValue);
-    }
+	   mapping.apply(oldValue, value);
+    put(key, newValue);
     return newValue;
 }
 					</code></pre>
