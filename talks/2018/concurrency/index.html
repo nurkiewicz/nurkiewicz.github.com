@@ -208,6 +208,20 @@ veryLargeList
 				</section>
 
 				<section>
+					<h2><code>parallelStream()</code> don'ts</h2>
+					<ul>
+						<li><strong>Don't</strong> run any I/O</li>
+						<li><strong>Don't</strong> use in shared JVM, like application server</li>
+						<li class="fragment"><strong>Don't...</strong> <span class="fragment">just don't use it</span></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2><code>ForkJoinPool</code></h2>
+					<p>Divide and conquer</p>
+				</section>
+
+				<section>
 					<h2><code>ForkJoinPool</code></h2>
 					<h3><code>commonPool()</code></h3>
 					<pre><code class="hljs" data-trim>
@@ -222,20 +236,6 @@ public class ForkJoinPool extends AbstractExecutorService {
   //...
 }
 					</code></pre>
-				</section>
-
-				<section>
-					<h2><code>parallelStream()</code> don'ts</h2>
-					<ul>
-						<li><strong>Don't</strong> run any I/O</li>
-						<li><strong>Don't</strong> use in shared JVM, like application server</li>
-						<li class="fragment">Just... <strong>don't</strong> use it</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2><code>ForkJoinPool</code></h2>
-					<p>Divide and conquer</p>
 				</section>
 
 				<section>
@@ -450,39 +450,6 @@ class Counter extends Actor {
 						</code></pre>
 					</section>
 
-					<section>
-						<h2>Actors (Scala/Java)</h2>
-						<pre><code class="hljs" data-trim>
-class AgentActor[T](initial: T) extends Actor {
-
-  private[this] var state = initial
-
-  override def receive = {
-    case Apply(fun: (T => T)) =>
-      state = fun(state)
-    case Deref =>
-      sender() ! state
-  }
-}
-	  					</code></pre>
-					</section>
-
-					<section>
-						<h2>Actors - implementing agents</h2>
-						<pre><code class="hljs" data-trim>
-val system = ActorSystem("Main")
-val agentActor = system.actorOf(Props(new AgentActor("")))
-
-agentActor ! Apply((s: String) => s + "a")
-agentActor ! Apply((s: String) => s + "b")
-agentActor ! Apply((s: String) => s + "c")
-agentActor ! Apply((s: String) => s.toUpperCase())
-
-implicit val timeout: Timeout = Timeout(1, SECONDS)
-agentActor ? Deref foreach println
-	  					</code></pre>
-					</section>
-
 				</section>
 
 				<section>
@@ -519,6 +486,11 @@ suspend fun buyItem(itemTypeId: String, cost: Int): Boolean {
         throw AppException(ex);
     }
 }
+					</code></pre>
+					<pre class="fragment"><code class="hljs" data-trim>
+suspend fun decrement(...)
+suspend fun giveItem(...)
+suspend fun refund(...)
 					</code></pre>
 
 				</section>
@@ -638,7 +610,8 @@ wordCount.merge("Foo", 1, (x, y) -&gt; x + y);
 					<pre><code class="hljs" data-trim>
 V merge(K key, V value, BiFunction&lt;V, V, V&gt; mapping) {
     V oldValue = get(key);
-    V newValue = (oldValue == null) ? value :
+    V newValue = (oldValue == null) ?
+	   value :
 	   mapping.apply(oldValue, value);
     put(key, newValue);
     return newValue;
